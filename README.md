@@ -110,6 +110,6 @@ MIT
 
 Checks powered by [FreeToolHub](https://freetoolhub.org) — the same tools are available to
 your agent over MCP at `https://freetoolhub.org/api/mcp`. Related:
-[context budget calculator](https://freetoolhub.org/mcp-context-budget-calculator) ·
-[MCP server trust score](https://freetoolhub.org/mcp-server-trust-score) ·
-[security audit](https://freetoolhub.org/mcp-server-security-audit)
+[context budget calculator](https://freetoolhub.org/mcp-context-budget-calculator/) ·
+[MCP server trust score](https://freetoolhub.org/mcp-server-trust-score/) ·
+[security audit](https://freetoolhub.org/mcp-server-security-audit/)
