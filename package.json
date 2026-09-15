@@ -1,0 +1,34 @@
+{
+  "name": "mcp-lint",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GitHub Action: validate MCP server cards and check MCP configs for context-window bloat.",
+  "type": "commonjs",
+  "main": "src/index.js",
+  "license": "MIT",
+  "author": "FreeToolHub <hello@freetoolhub.org>",
+  "homepage": "https://freetoolhub.org/mcp/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cavan1977/mcp-lint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cavan1977/mcp-lint/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node test/run.js"
+  },
+  "keywords": [
+    "github-action",
+    "mcp",
+    "model-context-protocol",
+    "server-card",
+    "sep-1649",
+    "lint",
+    "context-window",
+    "ai-agent"
+  ]
+}

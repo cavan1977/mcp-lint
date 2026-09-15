@@ -1,0 +1,5 @@
+node_modules/
+*.log
+__gh_output
+__gh_summary
+.DS_Store

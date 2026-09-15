@@ -1,0 +1,37 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  # 端到端：真的跑 src/index.js，真的打线上 MCP 端点
+  e2e:
+    name: End-to-end
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+      - run: node test/run.js
+
+  # 在真实 workflow 上下文里使用本 action 自身。
+  # 这一步的主要价值是：action.yml 写错（inputs / runs / outputs 拼错）
+  # 会在这里立刻失败，而不是等到用户装上才发现。
+  self-use:
+    name: Use this action on itself
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - id: lint
+        uses: ./
+        with:
+          fail-on-error: 'true'
+      - name: Report outputs
+        run: |
+          echo "card-valid=${{ steps.lint.outputs.card-valid }}"
+          echo "tool-count=${{ steps.lint.outputs.tool-count }}"
+          echo "budget-verdict=${{ steps.lint.outputs.budget-verdict }}"

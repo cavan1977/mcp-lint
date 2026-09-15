@@ -1,0 +1,53 @@
+name: 'MCP Lint'
+description: 'Validate your MCP server card and check your MCP config for context-window bloat — before it reaches your agents.'
+author: 'FreeToolHub'
+
+branding:
+  icon: 'check-circle'
+  color: 'blue'
+
+inputs:
+  card-path:
+    description: >-
+      Path to your SEP-1649 MCP Server Card, relative to the repository root.
+      If the file does not exist the card check is skipped rather than failed.
+    required: false
+    default: '.well-known/mcp/server-card.json'
+
+  config-path:
+    description: >-
+      Path to your MCP config. Leave empty to auto-detect one of
+      .mcp.json, mcp.json, .cursor/mcp.json, .vscode/mcp.json, .claude/mcp.json.
+    required: false
+    default: ''
+
+  api-url:
+    description: 'MCP endpoint used for the checks.'
+    required: false
+    default: 'https://freetoolhub.org/api/mcp'
+
+  context-window:
+    description: 'Model context window in tokens, used for the budget calculation.'
+    required: false
+    default: '200000'
+
+  fail-on-error:
+    description: >-
+      Fail the job when the server card is invalid. Set to "false" to report
+      problems as annotations only. A missing card never fails the job.
+    required: false
+    default: 'true'
+
+outputs:
+  card-valid:
+    description: '"true" or "false". Empty when no card was found.'
+  tool-count:
+    description: 'Number of tools declared across the detected MCP config.'
+  budget-verdict:
+    description: >-
+      Context budget verdict, worst of the token and tool-count dimensions:
+      healthy, moderate, heavy, severe or over_budget.
+
+runs:
+  using: 'node24'
+  main: 'src/index.js'
